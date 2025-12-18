@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('game_id')->constrained()->onDelete('cascade');
-            $table->integer('rating')->check('rating >= 1 and rating <= 5');
+            $table->integer('rating')->check('rating >= 1 and rating <= 10');
             $table->text('comment');
             $table->timestamps();
         });

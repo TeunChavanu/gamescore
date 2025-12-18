@@ -3,14 +3,11 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/all_games', function () {
-    return view('all_games');
-});
+Route::get('/', [GameController::class, 'home'])->name('home');
+Route::get('/all_games', [GameController::class, 'allGames'])->name('games.all');
 Route::get('/add', function () {
     return view('add');
 });
@@ -20,11 +17,15 @@ Route::get('/review', function () {
 Route::get('/show', function () {
     return view('show');
 });
+Route::get('/edit', function () {
+    return view('edit');
+});
 
 Route::resource('games', GameController::class);
+route::resource('reviews', ReviewController::class);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('/');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

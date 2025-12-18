@@ -13,7 +13,8 @@
     @include('header')
 
     <div class="grid grid-cols-3 align-items-center justify-items-center">
-        <div class="bg-white mx-7 p-2 mb-4 rounded-2xl shadow-lg col-start-2 mt-20 w-full h-auto">
+        <div class="bg-white mx-7 p-2 mb-4 rounded-2xl shadow-lg col-start-2 mt-20 w-full h-auto ">
+
 
             <h1 class="text-2xl font-bold mb-4 mt-10 text-center">Login</h1>
 

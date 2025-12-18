@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
     public function index()
     {
-        return view('home', ['games' => Game::all()]);
+        $games = Game::with('reviews')->get();
+
+        $games->each(function ($game) {
+            $game->average_score = $this->calculateAverageScore($game);
+        });
+
+        return view('games.index', compact('games'));
     }
 
     public function create()
@@ -71,9 +78,46 @@ class GameController extends Controller
         return redirect()->route('games.index')
             ->with('success', 'Game verwijderd!');
     }
+
+    public function home()
+    {
+        $games = Game::with('reviews')->get();
+        $games->each(function ($game) {
+            $game->average_score = $this->calculateAverageScore($game);
+        });
+
+        $top = $games->sortByDesc('average_score')->take(5);
+
+        return view('home', ['games' => $top]);
+    }
+
+    public function allGames()
+    {
+        $games = Game::with('reviews')->get();
+        $games->each(function ($game) {
+            $game->average_score = $this->calculateAverageScore($game);
+        });
+
+        $games = $games->sortBy('title');
+
+        return view('all_games', compact('games'));
+    }
+
     public function show(string $id)
     {
-        $game = Game::findOrFail($id);
+        $game = Game::with('reviews.user')->findOrFail($id);
+        $game->average_score = $this->calculateAverageScore($game);
+
         return view('games.show', compact('game'));
+    }
+
+
+    private function calculateAverageScore(Game $game): ?float
+    {
+        $average = $game->reviews->avg('rating');
+
+        return $average === null
+            ? null
+            : round($average, 1);
     }
 }

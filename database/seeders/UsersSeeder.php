@@ -26,7 +26,7 @@ class UsersSeeder extends Seeder
                 [
                     'id' => 3,
                     'name' => 'Teun Chavanu',
-                    'email' => 'teunchavanu@icloud.com',
+                    'email' => 'teun@mail.com',
                     'password' => bcrypt('password'),
                     'role' => 'user',
                     'created_at' => now(),

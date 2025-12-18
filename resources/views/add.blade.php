@@ -10,10 +10,10 @@
 
 <body class="bg-gray-100">
     @include('header')
-
+ 
     @if(auth()->check() && auth()->user()->role === 'admin')
 
-    <div class="max-w-xl mx-auto p-6 space-y-4">
+    <div class="max-w-xl mx-auto p-6 space-y-4 bg-white rounded-lg shadow-md mt-8">
 
         <h1 class="text-2xl font-bold mb-4">New Game</h1>
 
@@ -28,11 +28,9 @@
 
             <input type="number" name="release_year" placeholder="Year" class="w-full border p-2 rounded">
 
-            <input type="double" name="rating" placeholder="Rating (optional)" class="w-full border p-2 rounded">
-
             <div>
                 <label class="block mb-1">Image</label>
-                <input type="file" name="image" class="w-full border p-2 rounded">
+                <input type="file" name="image" class=" w-full border p-2 rounded">
             </div>
 
             <button class="bg-blue-600 text-white px-4 py-2 rounded">

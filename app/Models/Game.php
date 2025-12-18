@@ -14,4 +14,9 @@ class Game extends Model
         'release_year',
         'rating',
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

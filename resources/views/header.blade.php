@@ -15,8 +15,8 @@
             <ul class="flex gap-6 items-center">
                 <a class="text-gray-700 hover:text-blue-500 transition font-medium" href="/">Home</a>
                 <a class="text-gray-700 hover:text-blue-500 transition font-medium" href="/all_games">Games</a>
-                <a class="text-gray-700 hover:text-blue-500 transition font-medium" href="/review">Review</a>
                 @if(Auth::check())
+                <a class="text-gray-700 hover:text-blue-500 transition font-medium" href="/review">Review</a>
                 @if(auth()->user()->role === 'admin')
                 <a class="text-gray-700 hover:text-blue-500 transition font-medium" href="/add">Add</a>
                 @endif
